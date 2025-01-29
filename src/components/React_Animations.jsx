@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "./App.css";
-import ScrollAnimation from "./components/Scroll_Animation";
+import "../../src/App.css";
+import ScrollAnimation from "./Scroll_Animation";
 
 function ReactAnimations() {
   const [count, setCount] = useState(0);
