@@ -24,6 +24,9 @@ function App() {
         {/* <Gestures />
         <EnterAnimation /> */}
         {/* <KeyframeWildcard /> */}
+        <Rotate />
+        <Rotate />
+        <Rotate />
       </div>
       {/* <div className="keyframe">
         <WildcardKeyframes />
