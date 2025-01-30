@@ -3,47 +3,40 @@ import "../../src/App.css";
 import ScrollAnimation from "./Scroll_Animation";
 import Right_SmallCards from "./Right_Side_Container";
 import Left_SmallCards from "./Left_Side_Container";
+import { div } from "motion/react-client";
+import Rotate from "./motion";
+import BankingExperience from "./Home_Page_Text";
 
 function ReactAnimations() {
   return (
-    <div className="animation-container">
-      {/* Right Side - Small Cards */}
-      <div className="side-container">
+    <div>
+      <div style={{ height: "60vh" }}>
+        <BankingExperience/>
+      </div>
+
+      <div className="animation-container ">
+        {/* Right Side - Small Cards */}
+        {/* <div className="Left-side-container"> */}
         <Left_SmallCards />
-      </div>
+        {/* </div> */}
 
-      {/* Middle - Scroll Animation */}
-      <div className="middle-container">
+        {/* Middle - Scroll Animation */}
+        {/* <div className="ymiddle-container"> */}
         <ScrollAnimation />
-      </div>
+        {/* </div> */}
 
-      {/* Left Side - Small Cards */}
-      <div className="side-container">
+        {/* Left Side - Small Cards */}
+        {/* <div className="Right-side-container"> */}
         <Right_SmallCards />
+        {/* </div> */}
+      </div>
+      <div style={{ height: "100vh" }}>
+        {/* <Rotate /> */}
       </div>
 
       <style>
         {`
-          .animation-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px; /* Space between containers */
-            padding: 20px;
-            width: 100%;
-          }
-
-          .side-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-          }
-
-          .middle-container {
-            display: flex;
-            justify-content: center;
-          }
+         
         `}
       </style>
     </div>

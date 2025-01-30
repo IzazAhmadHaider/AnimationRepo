@@ -4,53 +4,79 @@ import { useEffect, useState } from "react";
 
 export default function Right_SmallCards() {
   const [scrollEffect, setScrollEffect] = useState({
-    scaleX: 1,
-    scaleY: 1,
-    translateX: 0,
-    translateY: 0,
+    scaleX: 1, // Initial scale is 1 (no scaling)
+    scaleY: 1, // Initial scale is 1 (no scaling)
+    translateX: 0, // Initial horizontal translation is 0
+    translateY: 0, // Initial vertical translation is 0
   });
-  const [prevScroll, setPrevScroll] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [scrollTimeout, setScrollTimeout] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      requestAnimationFrame(() => {
-        const scrollY = window.scrollY;
-        const maxScroll = 1000; // Adjust based on page height
-        const scrollDelta = scrollY - prevScroll;
+      const scrollY = window.scrollY;
+      const maxScroll = 1000; // Maximum scroll range for the animation
+      const scaleIntensity = 0.02; // Increased scale sensitivity
+      const moveIntensityX = 0.03; // Movement sensitivity for translateX
+      const moveIntensityY = 0.4; // Increased movement sensitivity for translateY (vertical movement)
 
-        const isScrollingDown = scrollDelta > 0;
+      // Calculate scale and translation values based on the scroll position
+      const scaleX = Math.max(0.9, 1 - scrollY * scaleIntensity);
+      const scaleY = Math.max(0.9, 1 - scrollY * scaleIntensity);
 
-        // Scale remains subtle but smooth
-        const scaleX = Math.max(0.9, 1 - scrollY / maxScroll);
-        const scaleY = Math.max(0.9, 1 - scrollY / maxScroll);
+      const translateX = Math.min(100, scrollY * moveIntensityX); // Horizontal movement remains the same
+      const translateY = Math.min(800, scrollY * moveIntensityY); // Increased vertical movement
 
-        // More movement on Y-axis, slight movement on X-axis
-        const translateX = isScrollingDown
-          ? Math.min(30, scrollY / 15) // Slight movement on X
-          : Math.max(-30, -scrollY / 15);
-
-        const translateY = isScrollingDown
-          ? Math.min(250, scrollY / 2.5) // Stronger movement on Y
-          : Math.max(-250, -scrollY / 2.5);
-
-        setScrollEffect({ scaleX, scaleY, translateX, translateY });
-        setPrevScroll(scrollY);
+      // Update scroll effect
+      setScrollEffect({
+        scaleX,
+        scaleY,
+        translateX,
+        translateY,
       });
+
+      // If scrolling, set to true
+      if (!isScrolling) {
+        setIsScrolling(true);
+      }
+
+      // Clear the previous timeout (stop animation when scroll stops)
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+
+      // Set timeout to stop animation after scroll stops
+      setScrollTimeout(
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 150) // Stop animation 150ms after scrolling stops
+      );
     };
 
+    // Attach scroll event listener
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScroll]);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    };
+  }, [isScrolling, scrollTimeout]);
 
   return (
-    <div className="column-container">
+    <div className=" Right_SmallCards_Container">
       <img
         src="https://cdn.prod.website-files.com/643f03b9f767055f60e2cdc8/643f0f0850a29442c2d4da31_Small%20Card%2003.svg"
         alt="Small Card 1"
         className="small-card"
         style={{
           transform: `translate(${scrollEffect.translateX}px, ${scrollEffect.translateY}px) scale(${scrollEffect.scaleX}, ${scrollEffect.scaleY})`,
-          transition: "transform 0.8s ease-out", // Smoother & longer duration
+          transition: isScrolling
+            ? "transform 0.15s ease-out"
+            : "transform 0.5s ease-out", // Smooth transition based on scroll
+          marginTop: "0px",
         }}
       />
       <img
@@ -59,7 +85,10 @@ export default function Right_SmallCards() {
         className="small-card"
         style={{
           transform: `translate(${scrollEffect.translateX}px, ${scrollEffect.translateY}px) scale(${scrollEffect.scaleX}, ${scrollEffect.scaleY})`,
-          transition: "transform 0.8s ease-out", // Same smooth effect
+          transition: isScrolling
+            ? "transform 0.15s ease-out"
+            : "transform 0.5s ease-out", // Same transition for both cards
+          marginTop: "0px",
         }}
       />
     </div>

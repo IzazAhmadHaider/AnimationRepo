@@ -40,31 +40,34 @@
 .read-the-docs {
   color: #888;
 } */
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: rgb(53, 53, 53);
+  /* background-color: rgb(53, 53, 53); */
 }
 .App {
   text-align: center;
-  background-color: rgb(53, 53, 53);
+  /* background-color: rgb(53, 53, 53); */
 }
 .animation-container {
   display: flex;
+  left: 10px;
   justify-content: space-between;
-  align-items: center;
-  gap: 30px;
-  padding: 20px;
+  align-items: start;
+  /* gap: 30px; */
+  padding: 40px;
+  padding-top: 100px;
   width: 100%;
   max-width: 1280px;
   min-height: 600px;
   overflow: hidden;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   flex-direction: row;
-  background-color: aqua;
+  /* background-color: aqua; */
 }
 
 .side-container {
@@ -73,18 +76,11 @@
   align-items: center;
   gap: 15px;
   flex: 1; /* Makes both side containers take equal space */
-  background-color: blue;
+  /* background-color: blue; */
+  left: -50;
 }
 
-.middle-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 2;
-  max-width: 600px;
-  max-height: 900px; /* Ensure enough height */
-  background-color: red;
-}
+
 
 .iphone-container {
   position: relative;
@@ -94,11 +90,11 @@
   justify-content: center;
   align-items: center;
   overflow: visible;
-  background-color: green;
+  /* background-color: green; */
 }
 
 .iphone-image {
-  width: 100%;
+  width: 140%;
   height: 100%;
 }
 
@@ -117,7 +113,7 @@
   width: 230px;
   height: 160px;
   border-radius: 100px;
-  background-color: blue;
+  /* background-color: blue; */
 }
 .column-container {
   top: -980;
@@ -130,11 +126,40 @@
 }
 
 .small-card {
-  width: 220px;
+  width: 200px;
   height: auto;
   max-width: 273px;
   max-height: 143px;
   object-fit: contain;
   border-radius: 20px;
-  background-color: red;
+  /* background-color: red; */
 }
+.Right_SmallCards_Container {
+  position: relative; /* Ensure it's properly positioned */
+  top: -100px; /* Adjust this value to fine-tune placement */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Space between images */
+  padding: 0px;
+  /* background-color: red; */
+  z-index: 2; /* Ensures it stays above other elements */
+}
+
+.Left_SmallCards_Container {
+  position: relative; /* Ensure it's properly positioned */
+  top: -100px; /* Adjust this value to fine-tune placement */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Space between images */
+  padding: 0px;
+  /* background-color: white; */
+  z-index: 2; /* Ensures it stays above other elements */
+}
+
+
+
+
+
+
