@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router'
 import Home from './components/Home'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -15,8 +15,9 @@ function App() {
         <Route path="reactanimation" element={<ReactAnimation />} />
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
 
