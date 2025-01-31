@@ -10,9 +10,9 @@ import BankingExperience from "./Home_Page_Text";
 function ReactAnimations() {
   return (
     <div>
-      <div style={{ height: "60vh" }}>
+      {/* <div style={{ height: "60vh" }}>
         <BankingExperience/>
-      </div>
+      </div> */}
 
       <div className="animation-container ">
         {/* Right Side - Small Cards */}
